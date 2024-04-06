@@ -5,10 +5,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -19,17 +17,16 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun AnalogClock(
+fun Clock(
     modifier: Modifier = Modifier,
-    viewModel: ClockFaceViewModel = viewModel(),
-    buttonClick: () -> Unit
+    viewModel: ClockFaceViewModel = viewModel()
 ) {
     val clockFaceState by viewModel.uiState.collectAsState()
 
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(color = Color.Red),
+            .background(color = Color(0xffffc0cb)),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -46,11 +43,6 @@ fun AnalogClock(
                     maxLines = 1
                 )
             }
-            Button(
-                onClick = buttonClick,
-            ) {
-                Text(text = "Update time")
-            }
         }
     }
 }
@@ -58,8 +50,7 @@ fun AnalogClock(
 @Preview
 @Composable
 fun AnalogClockPreview() {
-    AnalogClock(
-        viewModel = viewModel(),
-        buttonClick = {}
+    Clock(
+        viewModel = viewModel()
     )
 }
